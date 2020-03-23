@@ -1,0 +1,28 @@
+/* Copy and paste any or all of these css entries into your custom.css file inside your
+ * css folder. The functions are annotated to make things as easy as possible for you.
+ * Use any colors you want! For example - "http://htmlcolorcodes.com/color-picker/"
+ * Pick your color, copy and paste the HEX number. Example - #62FF00 = bright green.
+ */
+
+.MMM-CoronaVirus .header {
+  color: cyan;                  /* Color the title text. Default is white. */
+  text-align: center;           /* Align the title text. (left, center, right) */
+}
+
+.MMM-CoronaVirus .worldTotals {
+  color: cyan;                  /* Color the worldTotals text. Default is white. */
+  text-align: center;           /* Align the worldTotals text. (left, center, right) */
+  /*  display: none; */         /* Uncomment if you don't want country text */
+}
+
+.MMM-CoronaVirus .singleCountry {
+  color: cyan;                  /* Color the singleCountry text. Default is white. */
+  text-align: center;           /* Align the singleCountry text. (left, center, right) */
+  /*  display: none; */         /* Uncomment if you don't want cases text */
+}
+
+.MMM-CoronaVirus .countryTotals {
+  color: cyan;                  /* Color the countryTotals text. Default is white. */
+  text-align: center;           /* Align the countryTotals text. (left, center, right) */
+  /*  display: none; */         /* Uncomment if you don't want cases text */
+}
