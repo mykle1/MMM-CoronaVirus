@@ -55,14 +55,22 @@ Module.register("MMM-CoronaVirus", {
         }
 
 
+        // // updateTime
+        // var updatedTime = document.createElement("div");
+        // updatedTime.classList.add("small", "bright", "updatedTime");
+        // updatedTime.innerHTML = moment.utc(this.World.updated).format('MMMM DD, YYYY h:mm a');   // format('h:mm a') + " &nbsp &nbsp " +
+        // wrapper.appendChild(updatedTime);
+
+
 
         // worldTotals
         var worldTotals = document.createElement("div");
         worldTotals.classList.add("small", "bright", "worldTotals");
-        worldTotals.innerHTML = "World Totals as of &nbsp " + moment().format('h:mm a') + " &nbsp &nbsp " +
-            this.World.cases.toLocaleString() + " cases" + " &nbsp &nbsp " +
-            this.World.deaths.toLocaleString() + " deaths" + " &nbsp &nbsp " +
-            this.World.recovered.toLocaleString() + " recovered";
+        worldTotals.innerHTML =
+          "World cases = " + this.World.cases.toLocaleString() + " &nbsp &nbsp " +
+          "World deaths = " + this.World.deaths.toLocaleString() + " &nbsp &nbsp " +
+          "World recoveries = " + this.World.recovered.toLocaleString() + " &nbsp &nbsp " +
+          "Updated ~ " + moment.utc(this.World.updated).local().format('MMMM DD, YYYY h:mm a');
         wrapper.appendChild(worldTotals);
 
 
@@ -119,6 +127,7 @@ Module.register("MMM-CoronaVirus", {
 
     processWorld: function(data) {
         this.World = data;
+        console.log(this.World);
         this.loaded = true;
     },
 
