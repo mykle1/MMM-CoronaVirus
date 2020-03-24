@@ -11,6 +11,8 @@
 
 ![](images/2.png)
 
+* Click image above for life-size view
+
 ## Installation
 
 * `git clone https://github.com/mykle1/MMM-CoronaVirus` into the `~/MagicMirror/modules` directory.
