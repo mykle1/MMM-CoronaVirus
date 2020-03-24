@@ -5,6 +5,8 @@
 * Middle line = User chooses a country that is always displayed
 * Bottom line = A rotation of all countries
 
+* Alternately, you can show just one, any two, or all three lines by simple css rule
+
 ## Examples
 
 ![](images/2.png)
