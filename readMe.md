@@ -9,7 +9,7 @@
 
 ## Examples
 
-![](images/2.png)
+![](images/3.png)
 
 * Click image above for life-size view
 
@@ -22,15 +22,20 @@
 ## Config.js entry and options
 ```
 {
-  disabled: false,
-  module: 'MMM-CoronaVirus',
-  position: 'bottom bar',
-  config: {
-    country: "USA",             // Choose a country to always be shown (eg. UK, Germany, France , etc.)
-    useHeader: false,           // False if you don't want a header
-    header: "",                 // Any text you want. useHeader must be true
-    rotateInterval: 45 * 1000,  // in ms. Switch to next country in rotation
-          }
+disabled: false,
+module: 'MMM-CoronaVirus',
+position: 'bottom bar',
+config: {
+    country: "USA", // Choose a country to always be shown
+    deathsColor: "#ed282f", // hex color codes
+    recoveryColor: "##62FF00", // hex color codes
+    criticalColor: "#ffff00", // hex color codes
+    activeColor: "ffc564", // hex color codes
+    useHeader: false,   // False if you don't want a header
+    header: "",         // Any text you want. useHeader must be true
+    animationSpeed: 0,  // fade speed
+    rotateInterval: 30 * 1000, // switch to next country in rotation
+    }
 },
 ```
 

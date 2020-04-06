@@ -8,19 +8,28 @@ Module.register("MMM-CoronaVirus", {
 
     // Module config defaults.
     defaults: {
-        useHeader: false, // False if you don't want a header
-        header: "", // Any text you want. useHeader must be true
+        country: "",
+        deathsColor: "",
+        recoveryColor: "",
+        criticalColor: "",
+        activeColor: "",
+        useHeader: false,
+        header: "",
         maxWidth: "100%",
-        animationSpeed: 0, // fade speed
+        animationSpeed: 0,
         initialLoadDelay: 1250,
         retryDelay: 2500,
         rotateInterval: 5 * 60 * 1000,
-        updateInterval: 30 * 60 * 1000,
-        country: "USA", // Country to always be shown
+        updateInterval: 15 * 60 * 1000,
+
     },
 
     getStyles: function() {
         return ["MMM-CoronaVirus.css"];
+    },
+
+    getScripts: function() {
+        return ["moment.js"];
     },
 
     start: function() {
@@ -54,23 +63,16 @@ Module.register("MMM-CoronaVirus", {
             wrapper.appendChild(header);
         }
 
-
-        // // updateTime
-        // var updatedTime = document.createElement("div");
-        // updatedTime.classList.add("small", "bright", "updatedTime");
-        // updatedTime.innerHTML = moment.utc(this.World.updated).format('MMMM DD, YYYY h:mm a');   // format('h:mm a') + " &nbsp &nbsp " +
-        // wrapper.appendChild(updatedTime);
-
-
+          var people = this.World.cases; // to slow things down so data arrives
 
         // worldTotals
         var worldTotals = document.createElement("div");
         worldTotals.classList.add("small", "bright", "worldTotals");
         worldTotals.innerHTML =
-          "World cases = " + this.World.cases.toLocaleString() + " &nbsp &nbsp " +
-          "World deaths = " + this.World.deaths.toLocaleString() + " &nbsp &nbsp " +
-          "World recoveries = " + this.World.recovered.toLocaleString() + " &nbsp &nbsp " +
-          "Updated ~ " + moment.utc(this.World.updated).local().format('MMMM DD, YYYY h:mm a');
+          "World cases = " + people.toLocaleString() + " &nbsp &nbsp " +
+          "World deaths = " + '<font color='+this.config.deathsColor+'>' + this.World.deaths.toLocaleString() + '</font>'  + " &nbsp &nbsp " +
+          "World recoveries = " + '<font color='+this.config.recoveryColor+'>' + this.World.recovered.toLocaleString() + '</font>'  + " &nbsp &nbsp " +
+          "Updated ~ " + moment.utc(this.World.updated).local().format('MMMM DD, YYYY ~ h:mm a');
         wrapper.appendChild(worldTotals);
 
 
@@ -82,11 +84,11 @@ Module.register("MMM-CoronaVirus", {
         singleCountry.innerHTML = choice.country + " &nbsp &nbsp " +
             choice.cases.toLocaleString() + " total cases" + " &nbsp &nbsp " +
             choice.todayCases.toLocaleString() + " new cases today" + " &nbsp &nbsp " +
-            choice.deaths.toLocaleString() + " total deaths" + " &nbsp &nbsp " +
-            choice.todayDeaths.toLocaleString() + " deaths today" + " &nbsp &nbsp " +
-            choice.recovered.toLocaleString() + " recoveries" + " &nbsp &nbsp " +
-            choice.active.toLocaleString() + " active cases" + " &nbsp &nbsp " +
-            choice.critical.toLocaleString() + " in critical condition" + " &nbsp &nbsp " +
+            '<font color='+this.config.deathsColor+'>' + choice.deaths.toLocaleString() + '</font>' + " total deaths" + " &nbsp &nbsp " +
+            '<font color='+this.config.deathsColor+'>' + choice.todayDeaths.toLocaleString() + '</font>'  + " deaths today" + " &nbsp &nbsp " +
+            '<font color='+this.config.recoveryColor+'>' + choice.recovered.toLocaleString() + '</font>' + " recoveries" + " &nbsp &nbsp " +
+            '<font color='+this.config.activeColor+'>' + choice.active.toLocaleString() + '</font>' + " active cases" + " &nbsp &nbsp " +
+            '<font color='+this.config.criticalColor+'>' + choice.critical.toLocaleString() + '</font>' + " in critical condition" + " &nbsp &nbsp " +
             choice.casesPerOneMillion.toLocaleString() + " cases per million";
         wrapper.appendChild(singleCountry);
 
@@ -107,11 +109,11 @@ Module.register("MMM-CoronaVirus", {
                 Virus.country + " &nbsp &nbsp " +
                 Virus.cases.toLocaleString() + " total cases" + " &nbsp &nbsp " +
                 Virus.todayCases.toLocaleString() + " new cases today" + " &nbsp &nbsp " +
-                Virus.deaths.toLocaleString() + " total deaths" + " &nbsp &nbsp " +
-                Virus.todayDeaths.toLocaleString() + " deaths today" + " &nbsp &nbsp " +
-                Virus.recovered.toLocaleString() + " recoveries" + " &nbsp &nbsp " +
-                Virus.active.toLocaleString() + " active cases" + " &nbsp &nbsp " +
-                Virus.critical.toLocaleString() + " in critical condition" + " &nbsp &nbsp " +
+                '<font color='+this.config.deathsColor+'>' + Virus.deaths.toLocaleString() + '</font>' + " total deaths" + " &nbsp &nbsp " +
+                '<font color='+this.config.deathsColor+'>' + Virus.todayDeaths.toLocaleString() + '</font>' + " deaths today" + " &nbsp &nbsp " +
+                '<font color='+this.config.recoveryColor+'>' + Virus.recovered.toLocaleString() + '</font>' + " recoveries" + " &nbsp &nbsp " +
+                '<font color='+this.config.activeColor+'>' + Virus.active.toLocaleString() + '</font>' + " active cases" + " &nbsp &nbsp " +
+                '<font color='+this.config.criticalColor+'>' + Virus.critical.toLocaleString() + '</font>' + " in critical condition" + " &nbsp &nbsp " +
                 Virus.casesPerOneMillion.toLocaleString() + " cases per million";
             wrapper.appendChild(countryTotals);
 
@@ -122,12 +124,11 @@ Module.register("MMM-CoronaVirus", {
     processVirus: function(data) {
         this.Virus = data.result;
         this.choice = data.choice;
-        this.loaded = true;
     },
 
     processWorld: function(data) {
         this.World = data;
-        console.log(this.World);
+        // console.log(this.World);
         this.loaded = true;
     },
 
@@ -143,7 +144,7 @@ Module.register("MMM-CoronaVirus", {
         setInterval(() => {
             this.getVirus();
         }, this.config.updateInterval);
-        this.getVirus(this.config.initialLoadDelay);
+        this.getVirus();
     },
 
     getVirus: function() {
@@ -160,7 +161,6 @@ Module.register("MMM-CoronaVirus", {
         if (this.rotateInterval == null) {
             this.scheduleCarousel();
         }
-        this.updateDom(this.config.animationSpeed);
         this.updateDom(this.config.initialLoadDelay);
     },
 });
