@@ -9,7 +9,9 @@ Module.register("MMM-CoronaVirus", {
     // Module config defaults.
     defaults: {
         country: "",
+        totalCasesColor: "",
         deathsColor: "",
+        newCasesColor: "",
         recoveryColor: "",
         criticalColor: "",
         activeColor: "",
@@ -69,7 +71,7 @@ Module.register("MMM-CoronaVirus", {
         var worldTotals = document.createElement("div");
         worldTotals.classList.add("small", "bright", "worldTotals");
         worldTotals.innerHTML =
-          "World cases = " + people.toLocaleString() + " &nbsp &nbsp " +
+          "World cases = " + '<font color='+this.config.totalCasesColor+'>' +  people.toLocaleString() + '</font>' + " &nbsp &nbsp " +
           "World deaths = " + '<font color='+this.config.deathsColor+'>' + this.World.deaths.toLocaleString() + '</font>'  + " &nbsp &nbsp " +
           "World recoveries = " + '<font color='+this.config.recoveryColor+'>' + this.World.recovered.toLocaleString() + '</font>'  + " &nbsp &nbsp " +
           "Updated ~ " + moment.utc(this.World.updated).local().format('MMMM DD, YYYY ~ h:mm a');
@@ -82,8 +84,8 @@ Module.register("MMM-CoronaVirus", {
 
         singleCountry.classList.add("small", "bright", "singleCountry");
         singleCountry.innerHTML = choice.country + " &nbsp &nbsp " +
-            choice.cases.toLocaleString() + " total cases" + " &nbsp &nbsp " +
-            choice.todayCases.toLocaleString() + " new cases today" + " &nbsp &nbsp " +
+            '<font color='+this.config.totalCasesColor+'>' + choice.cases.toLocaleString() + '</font>' + " total cases" + " &nbsp &nbsp " +
+            '<font color='+this.config.newCasesColor+'>' + choice.todayCases.toLocaleString() + '</font>' + " new cases today" + " &nbsp &nbsp " +
             '<font color='+this.config.deathsColor+'>' + choice.deaths.toLocaleString() + '</font>' + " total deaths" + " &nbsp &nbsp " +
             '<font color='+this.config.deathsColor+'>' + choice.todayDeaths.toLocaleString() + '</font>'  + " deaths today" + " &nbsp &nbsp " +
             '<font color='+this.config.recoveryColor+'>' + choice.recovered.toLocaleString() + '</font>' + " recoveries" + " &nbsp &nbsp " +
@@ -107,8 +109,8 @@ Module.register("MMM-CoronaVirus", {
             countryTotals.classList.add("small", "bright", "countryTotals");
             countryTotals.innerHTML =
                 Virus.country + " &nbsp &nbsp " +
-                Virus.cases.toLocaleString() + " total cases" + " &nbsp &nbsp " +
-                Virus.todayCases.toLocaleString() + " new cases today" + " &nbsp &nbsp " +
+                '<font color='+this.config.totalCasesColor+'>' + Virus.cases.toLocaleString() + '</font>' + " total cases" + " &nbsp &nbsp " +
+                '<font color='+this.config.newCasesColor+'>' + Virus.todayCases.toLocaleString() + '</font>' + " new cases today" + " &nbsp &nbsp " +
                 '<font color='+this.config.deathsColor+'>' + Virus.deaths.toLocaleString() + '</font>' + " total deaths" + " &nbsp &nbsp " +
                 '<font color='+this.config.deathsColor+'>' + Virus.todayDeaths.toLocaleString() + '</font>' + " deaths today" + " &nbsp &nbsp " +
                 '<font color='+this.config.recoveryColor+'>' + Virus.recovered.toLocaleString() + '</font>' + " recoveries" + " &nbsp &nbsp " +

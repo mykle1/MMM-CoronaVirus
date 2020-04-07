@@ -26,15 +26,17 @@ disabled: false,
 module: 'MMM-CoronaVirus',
 position: 'bottom bar',
 config: {
-    country: "USA", // Choose a country to always be shown
-    deathsColor: "#ed282f", // hex color codes
-    recoveryColor: "##62FF00", // hex color codes
-    criticalColor: "#ffff00", // hex color codes
-    activeColor: "ffc564", // hex color codes
-    useHeader: false,   // False if you don't want a header
-    header: "",         // Any text you want. useHeader must be true
-    animationSpeed: 0,  // fade speed
-    rotateInterval: 30 * 1000, // switch to next country in rotation
+  country: "USA", // Choose a country to always be shown
+  totalCasesColor: "#ffc564", // hex color codes
+  deathsColor: "#ed282f",
+  newCasesColor: "#ffff00",
+  recoveryColor: "#62FF00",
+  criticalColor: "#ffff00",
+  activeColor: "#ffc564",
+  useHeader: false,   // False if you don't want a header
+  header: "",         // Any text you want. useHeader must be true
+  animationSpeed: 0,  // fade speed
+  rotateInterval: 30 * 1000, // switch to next country in rotation
     }
 },
 ```
