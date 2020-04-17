@@ -66,7 +66,7 @@ Module.register("MMM-CoronaVirus", {
         }
 
           var people = this.World.cases; // to slow things down so data arrives
-
+          console.log(people);
         // worldTotals
         var worldTotals = document.createElement("div");
         worldTotals.classList.add("small", "bright", "worldTotals");
@@ -81,7 +81,6 @@ Module.register("MMM-CoronaVirus", {
         // singleCountry
         var choice = this.choice;
         var singleCountry = document.createElement("div");
-
         singleCountry.classList.add("small", "bright", "singleCountry");
         singleCountry.innerHTML = choice.country + " &nbsp &nbsp " +
             '<font color='+this.config.totalCasesColor+'>' + choice.cases.toLocaleString() + '</font>' + " total cases" + " &nbsp &nbsp " +
@@ -125,12 +124,15 @@ Module.register("MMM-CoronaVirus", {
 
     processVirus: function(data) {
         this.Virus = data.result;
+        //console.log(this.Virus);
+
         this.choice = data.choice;
+        //console.log(this.choice);
     },
 
     processWorld: function(data) {
         this.World = data;
-        // console.log(this.World);
+        //console.log(this.World);
         this.loaded = true;
     },
 

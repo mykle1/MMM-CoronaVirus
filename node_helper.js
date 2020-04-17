@@ -15,7 +15,7 @@ module.exports = NodeHelper.create({
 
     getVirus: function(url) {
         request({
-            url: 'https://corona.lmao.ninja/countries',
+            url: 'https://corona.lmao.ninja/v2/countries',
             method: 'GET'
         }, (error, response, body) => {
             if (!error && response.statusCode == 200) {
@@ -37,7 +37,7 @@ module.exports = NodeHelper.create({
 
     getWorld: function(url) {
         request({
-            url: 'https://corona.lmao.ninja/all',
+            url: 'https://corona.lmao.ninja/v2/all',
             method: 'GET'
         }, (error, response, body) => {
             if (!error && response.statusCode == 200) {
